@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,13 +15,106 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UniX timestamp:- " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugR-9W-eyk">
+                                <rect key="frame" x="20" y="92" width="141" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Unix Timestamp here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wmM-IZ-lQi">
+                                <rect key="frame" x="169" y="92" width="197" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Converted to timeAgo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nd6-lg-hOX">
+                                <rect key="frame" x="20" y="150" width="133" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your time ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISm-wn-UBd">
+                                <rect key="frame" x="169" y="150" width="197" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGO-G1-grb">
+                                <rect key="frame" x="75" y="244" width="225" height="37"/>
+                                <color key="backgroundColor" red="0.12549019610000001" green="0.58039215690000001" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="225" id="0oA-8H-gi1"/>
+                                    <constraint firstAttribute="height" constant="37" id="yWe-sc-evH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="Convert Time to Ago">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="convertUnixtimetotimeAgo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MNk-jj-BrK"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default unix time is 1469164289" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXd-Ia-DsD">
+                                <rect key="frame" x="64" y="20" width="248" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JhJ-5K-d0E">
+                                <rect key="frame" x="104" y="638" width="167" height="21"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Created by: ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Badal Shah">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue-Medium"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ISm-wn-UBd" firstAttribute="leading" secondItem="wmM-IZ-lQi" secondAttribute="leading" id="3Rv-Oh-F0f"/>
+                            <constraint firstItem="xXd-Ia-DsD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7Aa-lA-TYx"/>
+                            <constraint firstItem="xXd-Ia-DsD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="DAG-vg-30T"/>
+                            <constraint firstItem="nd6-lg-hOX" firstAttribute="leading" secondItem="ugR-9W-eyk" secondAttribute="leading" id="H6H-Cq-Ezy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wmM-IZ-lQi" secondAttribute="trailing" constant="-7" id="NFJ-9x-9b7"/>
+                            <constraint firstItem="nd6-lg-hOX" firstAttribute="top" secondItem="ugR-9W-eyk" secondAttribute="bottom" constant="28" id="QSg-yd-LOf"/>
+                            <constraint firstItem="ugR-9W-eyk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="QbX-zb-g8P"/>
+                            <constraint firstItem="oGO-G1-grb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xq0-7v-6gb"/>
+                            <constraint firstItem="ugR-9W-eyk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="72" id="bmc-T3-4ao"/>
+                            <constraint firstItem="ISm-wn-UBd" firstAttribute="top" secondItem="nd6-lg-hOX" secondAttribute="top" id="dPI-67-ifx"/>
+                            <constraint firstItem="ISm-wn-UBd" firstAttribute="bottom" secondItem="nd6-lg-hOX" secondAttribute="bottom" id="hWz-qf-VaI"/>
+                            <constraint firstItem="ISm-wn-UBd" firstAttribute="height" secondItem="nd6-lg-hOX" secondAttribute="height" id="it3-ZI-aCy"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JhJ-5K-d0E" secondAttribute="bottom" constant="8" id="j7h-VN-XNG"/>
+                            <constraint firstItem="wmM-IZ-lQi" firstAttribute="height" secondItem="ugR-9W-eyk" secondAttribute="height" id="meh-T8-DrH"/>
+                            <constraint firstItem="nd6-lg-hOX" firstAttribute="height" secondItem="ugR-9W-eyk" secondAttribute="height" id="ncW-FL-7rM"/>
+                            <constraint firstItem="ISm-wn-UBd" firstAttribute="width" secondItem="wmM-IZ-lQi" secondAttribute="width" id="phu-XD-cB4"/>
+                            <constraint firstItem="JhJ-5K-d0E" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rZ8-kN-7lL"/>
+                            <constraint firstItem="oGO-G1-grb" firstAttribute="top" secondItem="nd6-lg-hOX" secondAttribute="bottom" constant="64" id="t45-8A-pDP"/>
+                            <constraint firstItem="wmM-IZ-lQi" firstAttribute="bottom" secondItem="ugR-9W-eyk" secondAttribute="bottom" id="weJ-Ni-9Dc"/>
+                            <constraint firstItem="wmM-IZ-lQi" firstAttribute="top" secondItem="ugR-9W-eyk" secondAttribute="top" id="xYT-85-eRE"/>
+                            <constraint firstItem="wmM-IZ-lQi" firstAttribute="leading" secondItem="ugR-9W-eyk" secondAttribute="trailing" constant="8" id="zCa-md-3Fp"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="lblConvertedtime" destination="ISm-wn-UBd" id="TWr-ej-0vf"/>
+                        <outlet property="txtUnixtime" destination="wmM-IZ-lQi" id="spb-lj-d1Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="339.5" y="375.5"/>
         </scene>
     </scenes>
 </document>

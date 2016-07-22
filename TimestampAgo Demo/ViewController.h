@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UITextField *txtUnixtime;
+@property (strong, nonatomic) IBOutlet UILabel *lblConvertedtime;
 
+- (IBAction)convertUnixtimetotimeAgo:(UIButton *)sender;
 
 @end
 
