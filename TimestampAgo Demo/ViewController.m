@@ -66,7 +66,7 @@
     // Timestamp calculation (based on compensation)
     
     NSCalendar* currentCalendar = [NSCalendar currentCalendar];
-    NSCalendarUnit unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
+    NSCalendarUnit unitFlags =  NSCalendarUnitYear | NSCalendarUnitMonth |   NSCalendarUnitDay |  NSCalendarUnitHour | NSCalendarUnitMinute;
     
     NSDateComponents *differenceComponents = [currentCalendar components:unitFlags fromDate:destinationDate toDate:[NSDate date] options:0];//Use `date` instead of `destinationDate` if you are not using Timezone offset correction
     
