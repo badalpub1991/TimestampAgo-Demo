@@ -121,3 +121,129 @@
     return cell;
 }
 ```
+
+#Searchbar Intigration
+
+==> in Appdelegate.h
+```
+@property (weak, nonatomic) IBOutlet UISearchBar *srchbar;
+@property (nonatomic, strong) NSMutableArray *searchResult; //SearchResult Array
+ 
+```
+==> in Appdelegate.m
+```
+@interface HomeViewController ()
+{
+    NSArray *dictJsonResponse; [mainArray]
+ }
+ @property (nonatomic, assign) BOOL searching;
+@property (nonatomic, assign) BOOL letUserSelectRow;
+
+
+#pragma mark --> UITableview Datasource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (self.searching)
+    {
+        return [self.searchResult count];
+    }
+    else
+    {
+        return [[dictJsonResponse valueForKey:@"Title"]count];
+    }
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *MainTableIdentifier = @"HomeTableViewCell";
+    HomeTableViewCell  *cell = [_tblData dequeueReusableCellWithIdentifier:MainTableIdentifier];
+    if (cell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HomeTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+        UIView *bgColorView = [[UIView alloc] init];
+        bgColorView.backgroundColor = [UIColor clearColor];
+        [cell setSelectedBackgroundView:bgColorView];
+    
+    }
+        cell.btnContact.tag=indexPath.row;
+    cell.btnFavourite.tag=indexPath.row;
+        if (self.searching) //SearchArray
+    {
+        cell.lblMainLabel.text=[[self.searchResult objectAtIndex:indexPath.row]objectForKey:@"Title"];
+        cell.lblSubcategory.text=[[self.searchResult objectAtIndex:indexPath.row] objectForKey:@"Location"];
+        cell.lblLandmark.text=[[self.searchResult objectAtIndex:indexPath.row] objectForKey:@"Landmark"];
+      
+    }
+    else  // MainArray
+    {
+        cell.lblMainLabel.text=[[dictJsonResponse objectAtIndex:indexPath.row]objectForKey:@"Title"];
+        cell.lblSubcategory.text=[[dictJsonResponse objectAtIndex:indexPath.row] objectForKey:@"Location"];
+        cell.lblLandmark.text=[[dictJsonResponse objectAtIndex:indexPath.row] objectForKey:@"Landmark"];
+    }
+    
+    return cell;
+}
+
+
+#pragma mark - UISearchBarDelegate
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar
+{
+    self.searching = YES;
+    self.letUserSelectRow = NO;
+    // self.tableView.scrollEnabled = NO;
+    [self.srchbar setShowsCancelButton:YES animated:YES];
+}
+- (void)searchBar:(UISearchBar *)theSearchBar textDidChange:(NSString *)searchText
+{
+    //Remove all objects first.
+    [self.searchResult removeAllObjects];
+    if ([searchText length] != 0) {
+        self.searching = YES;
+        self.letUserSelectRow = YES;
+        self.tblData.scrollEnabled = YES;
+        [self searchTableView];
+    } else {
+        self.searching = NO;
+        self.letUserSelectRow = NO;
+        //  self.tableView.scrollEnabled = NO;
+    }
+    [self.tblData reloadData];
+}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)theSearchBar
+{
+    [self searchTableView];
+}
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
+{
+    [self didPressedDoneSearch];
+}
+- (void)searchTableView
+{
+    NSString *searchText = self.srchbar.text;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(Title Contains %@)",searchText];
+    NSArray *filtered  = [dictJsonResponse filteredArrayUsingPredicate:predicate];
+    self.searchResult = [filtered mutableCopy];
+}
+
+- (void)didPressedDoneSearch
+{
+    self.srchbar.text = @"";
+    [self.srchbar resignFirstResponder];
+    self.letUserSelectRow = YES;
+    self.searching = NO;
+    //   [self showFilterBtn];
+    self.tblData.scrollEnabled = YES;
+    [self.tblData reloadData];
+    [self.srchbar setShowsCancelButton:NO animated:YES];
+}
+- (NSMutableArray *)searchResults{
+    if (!_searchResult)
+        _searchResult = [[NSMutableArray alloc]init];
+    return _searchResult;
+}
+
+
+    
+```
