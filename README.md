@@ -3,6 +3,7 @@
 #Coredata Overview
 
 //Some times getting Error for Coredata so , create instance of Appdelegate like this in nsmanageobjectMethod
+
 ```
 - (NSManagedObjectContext *)managedObjectContext {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -39,21 +40,22 @@
 }
 ```
 
-//Save Value in Coredata
+//Save Value in Coredata \n
+
 #pragma mark ---> Save Value in Coredata
--(BOOL)setcoredatavalueForEntityname :(NSString*)Entityname :(NSInteger)tag
-{BOOL storedsuccess;
+
+```
+
+  -(BOOL)setcoredatavalueForEntityname :(NSString*)Entityname :(NSInteger)tag
+    {BOOL storedsuccess;
     NSManagedObjectContext *context = [self managedObjectContext];
      NSManagedObject *newDevice = [NSEntityDescription insertNewObjectForEntityForName:Entityname inManagedObjectContext:context];
     [newDevice setValue:[[dictJsonResponse objectAtIndex:tag]objectForKey:@"Title"] forKey:@"title"];
     [newDevice setValue:[[dictJsonResponse objectAtIndex:tag]objectForKey:@"Location"] forKey:@"location"];
-    
     NSString *landmark =[[dictJsonResponse objectAtIndex:tag]objectForKey:@"Landmark"] ;
     [newDevice setValue:landmark forKey:@"landmark"];
     [newDevice setValue:[aryImagedata objectAtIndex:tag] forKey:@"image"];
-    
     storedsuccess=YES;
-    
     NSError *error = nil;
     // Save the object to persistent store
     if (![context save:&error]) {
@@ -61,8 +63,8 @@
         storedsuccess=NO;
     }
     return storedsuccess;
-    
 }
+
 ```
 
 //Fetch All the Value from Coredata 
